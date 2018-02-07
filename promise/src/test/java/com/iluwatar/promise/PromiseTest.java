@@ -22,8 +22,13 @@
  */
 package com.iluwatar.promise;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -34,14 +39,10 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 /**
  * Tests Promise class.
  */
@@ -49,8 +50,9 @@ public class PromiseTest {
 
   private Executor executor;
   private Promise<Integer> promise;
+  @Rule public ExpectedException exception = ExpectedException.none();
 
-  @BeforeEach
+  @Before
   public void setUp() {
     executor = Executors.newSingleThreadExecutor();
     promise = new Promise<>();

@@ -22,18 +22,17 @@
  */
 package com.iluwatar.servicelayer.common;
 
-import com.iluwatar.servicelayer.hibernate.HibernateUtil;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
+import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Date: 12/28/15 - 10:53 PM
@@ -75,7 +74,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     this.dao = dao;
   }
 
-  @BeforeEach
+  @Before
   public void setUp() throws Exception {
     for (int i = 0; i < INITIAL_COUNT; i++) {
       final String className = dao.persistentClass.getSimpleName();
@@ -84,7 +83,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     }
   }
 
-  @AfterEach
+  @After
   public void tearDown() throws Exception {
     HibernateUtil.dropSession();
   }

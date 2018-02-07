@@ -23,7 +23,7 @@
 
 package com.iluwatar.mute;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Tests that Mute idiom example runs without errors.

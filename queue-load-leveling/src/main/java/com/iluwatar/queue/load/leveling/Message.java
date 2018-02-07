@@ -31,6 +31,7 @@ public class Message {
  
   // Parameter constructor.
   public Message(String msg) {
+    super();
     this.msg = msg;
   }
 

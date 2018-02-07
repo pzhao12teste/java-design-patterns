@@ -22,12 +22,14 @@
  */
 package com.iluwatar.value.object;
 
-import com.google.common.testing.EqualsTester;
-import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+
 import static org.junit.Assert.assertThat;
+
+import com.google.common.testing.EqualsTester;
+
+import org.junit.Test;
 
 /**
  * Unit test for HeroStat.

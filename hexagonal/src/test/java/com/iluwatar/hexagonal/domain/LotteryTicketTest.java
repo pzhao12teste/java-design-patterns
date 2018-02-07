@@ -22,13 +22,13 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.Test;
 
 /**
  * Test Lottery Tickets for equality

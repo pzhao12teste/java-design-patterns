@@ -22,7 +22,7 @@
  */
 package com.iluwatar.mediator;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * 

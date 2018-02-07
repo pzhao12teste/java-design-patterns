@@ -16,9 +16,9 @@
  */
 package com.iluwatar.event.asynchronous;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
+
+import org.junit.Test;
 
 /**
  * Tests that EventAsynchronous example runs without errors.

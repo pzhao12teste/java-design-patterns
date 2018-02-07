@@ -22,7 +22,7 @@
  */
 package com.iluwatar.abstractdocument;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Simple App test

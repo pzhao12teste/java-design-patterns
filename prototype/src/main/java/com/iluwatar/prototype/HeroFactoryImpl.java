@@ -47,7 +47,7 @@ public class HeroFactoryImpl implements HeroFactory {
    */
   public Mage createMage() {
     try {
-      return mage.copy();
+      return mage.clone();
     } catch (CloneNotSupportedException e) {
       return null;
     }
@@ -58,7 +58,7 @@ public class HeroFactoryImpl implements HeroFactory {
    */
   public Warlord createWarlord() {
     try {
-      return warlord.copy();
+      return warlord.clone();
     } catch (CloneNotSupportedException e) {
       return null;
     }
@@ -69,7 +69,7 @@ public class HeroFactoryImpl implements HeroFactory {
    */
   public Beast createBeast() {
     try {
-      return beast.copy();
+      return beast.clone();
     } catch (CloneNotSupportedException e) {
       return null;
     }

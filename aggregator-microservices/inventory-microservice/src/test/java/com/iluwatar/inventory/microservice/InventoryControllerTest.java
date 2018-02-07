@@ -22,9 +22,8 @@
  */
 package com.iluwatar.inventory.microservice;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Test Inventory Rest Controller
@@ -36,6 +35,6 @@ public class InventoryControllerTest {
 
     int numberOfInventories = inventoryController.getProductInventories();
 
-    assertEquals(5, numberOfInventories);
+    Assert.assertEquals(5, numberOfInventories);
   }
 }

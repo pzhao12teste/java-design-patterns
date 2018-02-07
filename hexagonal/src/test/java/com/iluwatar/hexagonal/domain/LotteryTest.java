@@ -22,23 +22,24 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import com.iluwatar.hexagonal.module.LotteryTestingModule;
-import com.iluwatar.hexagonal.test.LotteryTestUtils;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.iluwatar.hexagonal.module.LotteryTestingModule;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import com.iluwatar.hexagonal.test.LotteryTestUtils;
 
 /**
  * 
@@ -59,7 +60,7 @@ public class LotteryTest {
     this.injector = Guice.createInjector(new LotteryTestingModule());
   }
 
-  @BeforeEach
+  @Before
   public void setup() {
     injector.injectMembers(this);
     // add funds to the test player's bank account

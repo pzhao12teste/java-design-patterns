@@ -22,13 +22,12 @@
  */
 package com.iluwatar.guarded.suspension;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Guarded Queue
@@ -48,14 +47,15 @@ public class GuardedQueueTest {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    assertEquals(Integer.valueOf(10), value);
+    Assert.assertEquals(Integer.valueOf(10), value);
   }
 
   @Test
   public void testPut() {
     GuardedQueue g = new GuardedQueue();
     g.put(12);
-    assertEquals(Integer.valueOf(12), g.get());
+    Assert.assertEquals(Integer.valueOf(12), g.get());
+
   }
 
 }

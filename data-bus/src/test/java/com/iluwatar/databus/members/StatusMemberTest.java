@@ -26,13 +26,11 @@ import com.iluwatar.databus.DataBus;
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests for {@link StatusMember}.
@@ -50,7 +48,7 @@ public class StatusMemberTest {
     //when
     statusMember.accept(startingData);
     //then
-    assertEquals(startTime, statusMember.getStarted());
+    Assert.assertEquals(startTime, statusMember.getStarted());
   }
 
   @Test
@@ -63,7 +61,7 @@ public class StatusMemberTest {
     //when
     statusMember.accept(stoppingData);
     //then
-    assertEquals(stop, statusMember.getStopped());
+    Assert.assertEquals(stop, statusMember.getStopped());
   }
 
   @Test
@@ -74,8 +72,8 @@ public class StatusMemberTest {
     //when
     statusMember.accept(messageData);
     //then
-    assertNull(statusMember.getStarted());
-    assertNull(statusMember.getStopped());
+    Assert.assertNull(statusMember.getStarted());
+    Assert.assertNull(statusMember.getStopped());
   }
 
 }

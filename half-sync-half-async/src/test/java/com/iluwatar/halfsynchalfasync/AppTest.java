@@ -22,9 +22,9 @@
  */
 package com.iluwatar.halfsynchalfasync;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.concurrent.ExecutionException;
+
+import org.junit.Test;
 
 /**
  * 

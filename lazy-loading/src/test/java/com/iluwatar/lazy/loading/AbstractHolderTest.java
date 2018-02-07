@@ -22,13 +22,11 @@
  */
 package com.iluwatar.lazy.loading;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertSame;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Date: 12/19/15 - 11:58 AM
@@ -54,14 +52,12 @@ public abstract class AbstractHolderTest {
   /**
    * This test shows that the heavy field is not instantiated until the method getHeavy is called
    */
-  @Test
+  @Test(timeout = 3000)
   public void testGetHeavy() throws Exception {
-    assertTimeout(ofMillis(3000), () -> {
-      assertNull(getInternalHeavyValue());
-      assertNotNull(getHeavy());
-      assertNotNull(getInternalHeavyValue());
-      assertSame(getHeavy(), getInternalHeavyValue());
-    });
+    assertNull(getInternalHeavyValue());
+    assertNotNull(getHeavy());
+    assertNotNull(getInternalHeavyValue());
+    assertSame(getHeavy(), getInternalHeavyValue());
   }
 
 }

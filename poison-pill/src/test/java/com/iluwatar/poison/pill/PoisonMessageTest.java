@@ -22,11 +22,10 @@
  */
 package com.iluwatar.poison.pill;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static com.iluwatar.poison.pill.Message.Headers;
 import static com.iluwatar.poison.pill.Message.POISON_PILL;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Date: 12/27/15 - 10:30 PM
@@ -35,39 +34,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public class PoisonMessageTest {
 
-  @Test
+  @Test(expected = UnsupportedOperationException.class)
   public void testAddHeader() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.addHeader(Headers.SENDER, "sender");
-    });
+    POISON_PILL.addHeader(Headers.SENDER, "sender");
   }
 
-  @Test
+  @Test(expected = UnsupportedOperationException.class)
   public void testGetHeader() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getHeader(Headers.SENDER);
-    });
+    POISON_PILL.getHeader(Headers.SENDER);
   }
 
-  @Test
+  @Test(expected = UnsupportedOperationException.class)
   public void testGetHeaders() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getHeaders();
-    });
+    POISON_PILL.getHeaders();
   }
 
-  @Test
+  @Test(expected = UnsupportedOperationException.class)
   public void testSetBody() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.setBody("Test message.");
-    });
+    POISON_PILL.setBody("Test message.");
   }
 
-  @Test
+  @Test(expected = UnsupportedOperationException.class)
   public void testGetBody() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getBody();
-    });
+    POISON_PILL.getBody();
   }
 
 }

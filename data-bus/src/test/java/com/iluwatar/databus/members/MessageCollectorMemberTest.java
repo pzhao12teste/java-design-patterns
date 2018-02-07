@@ -24,12 +24,10 @@ package com.iluwatar.databus.members;
 
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for {@link MessageCollectorMember}.
@@ -47,7 +45,7 @@ public class MessageCollectorMemberTest {
     //when
     collector.accept(messageData);
     //then
-    assertTrue(collector.getMessages().contains(message));
+    Assert.assertTrue(collector.getMessages().contains(message));
   }
 
   @Test
@@ -58,7 +56,7 @@ public class MessageCollectorMemberTest {
     //when
     collector.accept(startingData);
     //then
-    assertEquals(0, collector.getMessages().size());
+    Assert.assertEquals(0, collector.getMessages().size());
   }
 
 }

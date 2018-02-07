@@ -28,26 +28,17 @@ package com.iluwatar.prototype;
  *
  */
 public class OrcBeast extends Beast {
-  
-  private String weapon;
 
-  public OrcBeast(String weapon) {
-    this.weapon = weapon;
-  }
-  
-  public OrcBeast(OrcBeast orcBeast) {
-    this.weapon = orcBeast.weapon;
-  }
+  public OrcBeast() {}
 
   @Override
-  public Beast copy() throws CloneNotSupportedException {
-    return new OrcBeast(this);
+  public Beast clone() throws CloneNotSupportedException {
+    return new OrcBeast();
   }
 
   @Override
   public String toString() {
-    return "Orcish wolf attacks with " + weapon;
+    return "Orcish wolf";
   }
-  
 
 }

@@ -22,8 +22,7 @@
  */
 package com.iluwatar.mutex;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import java.io.IOException;
 
 /**

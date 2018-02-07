@@ -22,16 +22,13 @@
  */
 package com.iluwatar.observer;
 
+import static org.junit.Assert.assertEquals;
+
 import com.iluwatar.observer.utils.InMemoryAppender;
 import java.util.function.Supplier;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Date: 12/27/15 - 11:44 AM
@@ -43,12 +40,12 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
 
   private InMemoryAppender appender;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     appender = new InMemoryAppender();
   }
 
-  @AfterEach
+  @After
   public void tearDown() {
     appender.stop();
   }
@@ -59,24 +56,37 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
   private final Supplier<O> factory;
 
   /**
+   * The weather type currently tested
+   */
+  private final WeatherType weather;
+
+  /**
+   * The expected response from the observer
+   */
+  private final String response;
+
+  /**
    * Create a new test instance using the given parameters
    *
+   * @param weather  The weather currently being tested
+   * @param response The expected response from the observer
    * @param factory  The factory, used to create an instance of the tested observer
    */
-  WeatherObserverTest(final Supplier<O> factory) {
+  WeatherObserverTest(final WeatherType weather, final String response, final Supplier<O> factory) {
+    this.weather = weather;
+    this.response = response;
     this.factory = factory;
   }
 
   /**
    * Verify if the weather has the expected influence on the observer
    */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testObserver(WeatherType weather, String response) {
+  @Test
+  public void testObserver() {
     final O observer = this.factory.get();
     assertEquals(0, appender.getLogSize());
 
-    observer.update(weather);
+    observer.update(this.weather);
     assertEquals(response, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }

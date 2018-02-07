@@ -22,11 +22,10 @@
  */
 package com.iluwatar.builder;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Date: 12/6/15 - 11:01 PM
@@ -38,17 +37,17 @@ public class HeroTest {
   /**
    * Test if we get the expected exception when trying to create a hero without a profession
    */
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testMissingProfession() throws Exception {
-    assertThrows(IllegalArgumentException.class, () -> new Hero.Builder(null, "Sir without a job"));
+    new Hero.Builder(null, "Sir without a job");
   }
 
   /**
    * Test if we get the expected exception when trying to create a hero without a name
    */
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testMissingName() throws Exception {
-    assertThrows(IllegalArgumentException.class, () -> new Hero.Builder(Profession.THIEF, null));
+    new Hero.Builder(Profession.THIEF, null);
   }
 
   /**

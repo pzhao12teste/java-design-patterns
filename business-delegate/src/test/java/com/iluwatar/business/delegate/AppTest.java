@@ -22,7 +22,7 @@
  */
 package com.iluwatar.business.delegate;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.IOException;
 

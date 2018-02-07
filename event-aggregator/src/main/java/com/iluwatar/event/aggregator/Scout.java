@@ -30,6 +30,7 @@ package com.iluwatar.event.aggregator;
 public class Scout extends EventEmitter {
 
   public Scout() {
+    super();
   }
 
   public Scout(EventObserver obs) {

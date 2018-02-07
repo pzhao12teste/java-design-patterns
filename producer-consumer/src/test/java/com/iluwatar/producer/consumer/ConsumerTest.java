@@ -22,12 +22,9 @@
  */
 package com.iluwatar.producer.consumer;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/27/15 - 11:01 PM

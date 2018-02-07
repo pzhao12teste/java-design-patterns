@@ -28,25 +28,17 @@ package com.iluwatar.prototype;
  *
  */
 public class ElfBeast extends Beast {
-  
-  private String helpType;
 
-  public ElfBeast(String helpType) {
-    this.helpType = helpType;
-  }
-
-  public ElfBeast(ElfBeast elfBeast) {
-    this.helpType = elfBeast.helpType;
-  }
+  public ElfBeast() {}
 
   @Override
-  public Beast copy() throws CloneNotSupportedException {
-    return new ElfBeast(this);
+  public Beast clone() throws CloneNotSupportedException {
+    return new ElfBeast();
   }
 
   @Override
   public String toString() {
-    return "Elven eagle helps in " + helpType;
+    return "Elven eagle";
   }
 
 }

@@ -25,18 +25,17 @@ package com.iluwatar.layers;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/15/15 - 10:04 PM
@@ -47,12 +46,12 @@ public class CakeViewImplTest {
 
   private InMemoryAppender appender;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     appender = new InMemoryAppender(CakeViewImpl.class);
   }
 
-  @AfterEach
+  @After
   public void tearDown() {
     appender.stop();
   }
