@@ -29,24 +29,16 @@ package com.iluwatar.prototype;
  */
 public class OrcMage extends Mage {
 
-  private String weapon;
-
-  public OrcMage(String weapon) {
-    this.weapon = weapon;
-  }
-  
-  public OrcMage(OrcMage orcMage) {
-    this.weapon = orcMage.weapon;
-  }
+  public OrcMage() {}
 
   @Override
-  public OrcMage copy() throws CloneNotSupportedException {
-    return new OrcMage(this);
+  public Mage clone() throws CloneNotSupportedException {
+    return new OrcMage();
   }
 
   @Override
   public String toString() {
-    return "Orcish mage attacks with " + weapon;
+    return "Orcish mage";
   }
 
 }

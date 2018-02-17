@@ -22,7 +22,7 @@
  */
 package com.iluwatar.eip.splitter;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test for App class

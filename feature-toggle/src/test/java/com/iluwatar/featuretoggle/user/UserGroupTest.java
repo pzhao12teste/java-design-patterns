@@ -22,11 +22,10 @@
  */
 package com.iluwatar.featuretoggle.user;
 
-import org.junit.jupiter.api.Test;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.Test;
 
 /**
  * Test User Group specific feature
@@ -47,21 +46,17 @@ public class UserGroupTest {
     assertTrue(UserGroup.isPaid(user));
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testAddUserToPaidWhenOnFree() throws Exception {
     User user = new User("Paid User");
     UserGroup.addUserToFreeGroup(user);
-    assertThrows(IllegalArgumentException.class, () -> {
-      UserGroup.addUserToPaidGroup(user);
-    });
+    UserGroup.addUserToPaidGroup(user);
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testAddUserToFreeWhenOnPaid() throws Exception {
     User user = new User("Free User");
     UserGroup.addUserToPaidGroup(user);
-    assertThrows(IllegalArgumentException.class, () -> {
-      UserGroup.addUserToFreeGroup(user);
-    });
+    UserGroup.addUserToFreeGroup(user);
   }
 }

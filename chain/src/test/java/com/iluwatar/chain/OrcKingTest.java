@@ -22,9 +22,9 @@
  */
 package com.iluwatar.chain;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Date: 12/6/15 - 9:29 PM
@@ -49,8 +49,8 @@ public class OrcKingTest {
     for (final Request request : REQUESTS) {
       king.makeRequest(request);
       assertTrue(
-          request.isHandled(),
-          "Expected all requests from King to be handled, but [" + request + "] was not!"
+          "Expected all requests from King to be handled, but [" + request + "] was not!",
+          request.isHandled()
       );
     }
 

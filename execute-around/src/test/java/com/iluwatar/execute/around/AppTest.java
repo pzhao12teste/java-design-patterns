@@ -22,9 +22,9 @@
  */
 package com.iluwatar.execute.around;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,8 +42,8 @@ public class AppTest {
     App.main(args);
   }
 
-  @BeforeEach
-  @AfterEach
+  @Before
+  @After
   public void cleanup() {
     File file = new File("testfile.txt");
     file.delete();

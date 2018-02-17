@@ -22,21 +22,19 @@
  */
 package com.iluwatar.throttling;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import com.iluwatar.throttling.Tenant;
 
 import java.security.InvalidParameterException;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * TenantTest to test the creation of Tenant with valid parameters.
  */
 public class TenantTest {
 
-  @Test
+  @Test(expected = InvalidParameterException.class)
   public void constructorTest() {
-    assertThrows(InvalidParameterException.class, () -> {
-      Tenant tenant = new Tenant("FailTenant", -1);
-    });
+    Tenant tenant = new Tenant("FailTenant", -1);
   }
 }

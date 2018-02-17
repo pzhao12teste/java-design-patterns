@@ -22,7 +22,7 @@
  */
 package com.iluwatar.throttling;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Application test

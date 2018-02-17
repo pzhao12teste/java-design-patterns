@@ -22,7 +22,7 @@
  */
 package com.iluwatar.async.method.invocation;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * 

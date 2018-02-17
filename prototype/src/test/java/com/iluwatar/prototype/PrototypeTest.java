@@ -22,43 +22,66 @@
  */
 package com.iluwatar.prototype;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
  * Date: 12/28/15 - 8:45 PM
  * @param <P> Prototype
  * @author Jeroen Meulemeester
  */
+@RunWith(Parameterized.class)
 public class PrototypeTest<P extends Prototype> {
-  static Collection<Object[]> dataProvider() {
+
+  @Parameterized.Parameters
+  public static Collection<Object[]> data() {
     return Arrays.asList(
-            new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
-            new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
-            new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},
-            new Object[]{new ElfBeast("cooking"), "Elven eagle helps in cooking"},
-            new Object[]{new ElfMage("cleaning"), "Elven mage helps in cleaning"},
-            new Object[]{new ElfWarlord("protecting"), "Elven warlord helps in protecting"}
+            new Object[]{new OrcBeast(), "Orcish wolf"},
+            new Object[]{new OrcMage(), "Orcish mage"},
+            new Object[]{new OrcWarlord(), "Orcish warlord"},
+            new Object[]{new ElfBeast(), "Elven eagle"},
+            new Object[]{new ElfMage(), "Elven mage"},
+            new Object[]{new ElfWarlord(), "Elven warlord"}
     );
   }
 
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testPrototype(P testedPrototype, String expectedToString) throws Exception {
-    assertEquals(expectedToString, testedPrototype.toString());
+  /**
+   * The tested prototype instance
+   */
+  private final P testedPrototype;
 
-    final Object clone = testedPrototype.copy();
+  /**
+   * The expected {@link Prototype#toString()} value
+   */
+  private final String expectedToString;
+
+  /**
+   * Create a new test instance, using the given test object and expected value
+   *
+   * @param testedPrototype  The tested prototype instance
+   * @param expectedToString The expected {@link Prototype#toString()} value
+   */
+  public PrototypeTest(final P testedPrototype, final String expectedToString) {
+    this.expectedToString = expectedToString;
+    this.testedPrototype = testedPrototype;
+  }
+
+  @Test
+  public void testPrototype() throws Exception {
+    assertEquals(this.expectedToString, this.testedPrototype.toString());
+
+    final Object clone = this.testedPrototype.clone();
     assertNotNull(clone);
-    assertNotSame(clone, testedPrototype);
-    assertSame(testedPrototype.getClass(), clone.getClass());
+    assertNotSame(clone, this.testedPrototype);
+    assertSame(this.testedPrototype.getClass(), clone.getClass());
   }
 
 }

@@ -23,8 +23,9 @@
 package com.iluwatar.servicelayer.app;
 
 import com.iluwatar.servicelayer.hibernate.HibernateUtil;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.After;
+import org.junit.Test;
 
 /**
  * 
@@ -39,7 +40,7 @@ public class AppTest {
     App.main(args);
   }
 
-  @AfterEach
+  @After
   public void tearDown() throws Exception {
     HibernateUtil.dropSession();
   }

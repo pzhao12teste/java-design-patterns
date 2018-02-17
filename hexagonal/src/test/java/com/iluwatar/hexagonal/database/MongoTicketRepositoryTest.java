@@ -28,19 +28,19 @@ import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for Mongo based ticket repository
  */
-@Disabled
+@Ignore
 public class MongoTicketRepositoryTest {
 
   private static final String TEST_DB = "lotteryTestDB";
@@ -49,7 +49,7 @@ public class MongoTicketRepositoryTest {
 
   private MongoTicketRepository repository;
 
-  @BeforeEach
+  @Before
   public void init() {
     MongoConnectionPropertiesLoader.load();
     MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),

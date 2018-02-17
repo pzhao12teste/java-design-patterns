@@ -22,15 +22,14 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.Test;
 
 /**
  * 
@@ -50,13 +49,11 @@ public class LotteryNumbersTest {
     assertTrue(numbers.getNumbers().contains(4));
   }
   
-  @Test
+  @Test(expected = UnsupportedOperationException.class)
   public void testNumbersCantBeModified() {
     LotteryNumbers numbers = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    assertThrows(UnsupportedOperationException.class, () -> {
-      numbers.getNumbers().add(5);
-    });
+    numbers.getNumbers().add(5);
   }
   
   @Test

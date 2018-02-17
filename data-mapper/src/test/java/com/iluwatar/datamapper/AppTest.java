@@ -18,7 +18,8 @@
  */
 package com.iluwatar.datamapper;
 
-import org.junit.jupiter.api.Test;
+import com.iluwatar.datamapper.App;
+import org.junit.Test;
 
 /**
  * Tests that Data-Mapper example runs without errors.

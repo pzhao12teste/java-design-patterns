@@ -22,7 +22,7 @@
  */
 package com.iluwatar.model.view.controller;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * 

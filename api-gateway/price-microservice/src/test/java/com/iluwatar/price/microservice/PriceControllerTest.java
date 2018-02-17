@@ -22,9 +22,9 @@
  */
 package com.iluwatar.price.microservice;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Price Rest Controller
@@ -36,6 +36,6 @@ public class PriceControllerTest {
 
     String price = priceController.getPrice();
 
-    assertEquals("20", price);
+    Assert.assertEquals("20", price);
   }
 }

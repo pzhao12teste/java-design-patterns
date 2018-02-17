@@ -23,7 +23,7 @@
 
 package com.iluwatar.dao;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Tests that DAO example runs without errors.

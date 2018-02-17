@@ -59,7 +59,7 @@ public class Audio {
   }
   
   /**
-   * This method check the Update Method's thread is started.
+   * This method stops the Update Method's thread. 
    * @return boolean
    */
   public static synchronized boolean isServiceRunning() {

@@ -22,7 +22,7 @@
  */
 package com.iluwatar.reader.writer.lock;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Application test

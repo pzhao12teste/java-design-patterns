@@ -3,7 +3,7 @@ layout: pattern
 title: Marker Interface
 folder: marker
 permalink: /patterns/marker/
-categories: Other
+categories: Design
 tags:
  - Java
  - Difficulty-Beginner

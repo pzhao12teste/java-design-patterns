@@ -22,23 +22,13 @@
  */
 package com.iluwatar.fluentinterface.fluentiterable;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/12/15 - 7:00 PM
@@ -66,7 +56,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testFirstEmptyCollection() throws Exception {
-    final List<Integer> integers = Collections.emptyList();
+    final List<Integer> integers = Collections.<Integer>emptyList();
     final Optional<Integer> first = createFluentIterable(integers).first();
     assertNotNull(first);
     assertFalse(first.isPresent());

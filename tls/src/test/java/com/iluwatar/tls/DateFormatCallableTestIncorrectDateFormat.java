@@ -30,11 +30,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * 
@@ -85,7 +84,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
   /**
    * Run Callable and prepare results for usage in the test methods
    */
-  @BeforeAll
+  @BeforeClass
   public static void setup() {
     // Create a callable. Pass a string date value not matching the format string
     DateFormatCallable callableDf = new DateFormatCallable("dd/MM/yyyy", "15.12.2015");

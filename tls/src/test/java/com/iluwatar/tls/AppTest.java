@@ -23,7 +23,7 @@
 
 package com.iluwatar.tls;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Tests that thread local storage example runs without errors.

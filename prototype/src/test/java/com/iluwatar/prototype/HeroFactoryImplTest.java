@@ -22,9 +22,9 @@
  */
 package com.iluwatar.prototype;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -43,18 +43,18 @@ public class HeroFactoryImplTest {
     final Warlord warlord = mock(Warlord.class);
     final Beast beast = mock(Beast.class);
 
-    when(mage.copy()).thenThrow(CloneNotSupportedException.class);
-    when(warlord.copy()).thenThrow(CloneNotSupportedException.class);
-    when(beast.copy()).thenThrow(CloneNotSupportedException.class);
+    when(mage.clone()).thenThrow(CloneNotSupportedException.class);
+    when(warlord.clone()).thenThrow(CloneNotSupportedException.class);
+    when(beast.clone()).thenThrow(CloneNotSupportedException.class);
 
     final HeroFactoryImpl factory = new HeroFactoryImpl(mage, warlord, beast);
     assertNull(factory.createMage());
     assertNull(factory.createWarlord());
     assertNull(factory.createBeast());
 
-    verify(mage).copy();
-    verify(warlord).copy();
-    verify(beast).copy();
+    verify(mage).clone();
+    verify(warlord).clone();
+    verify(beast).clone();
     verifyNoMoreInteractions(mage, warlord, beast);
   }
 

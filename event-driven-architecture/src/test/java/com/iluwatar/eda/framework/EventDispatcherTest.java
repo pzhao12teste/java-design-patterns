@@ -27,7 +27,8 @@ import com.iluwatar.eda.event.UserUpdatedEvent;
 import com.iluwatar.eda.handler.UserCreatedEventHandler;
 import com.iluwatar.eda.handler.UserUpdatedEventHandler;
 import com.iluwatar.eda.model.User;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;

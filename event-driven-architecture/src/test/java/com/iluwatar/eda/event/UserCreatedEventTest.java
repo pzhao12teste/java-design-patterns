@@ -23,9 +23,10 @@
 package com.iluwatar.eda.event;
 
 import com.iluwatar.eda.model.User;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * {@link UserCreatedEventTest} tests and verifies {@link AbstractEvent} behaviour.

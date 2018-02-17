@@ -22,32 +22,38 @@
  */
 package com.iluwatar.dao;
 
-import org.h2.jdbcx.JdbcDataSource;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+import javax.sql.DataSource;
+
+import org.h2.jdbcx.JdbcDataSource;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+
+import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 /**
  * Tests {@link DbCustomerDao}.
  */
+@RunWith(HierarchicalContextRunner.class)
 public class DbCustomerDaoTest {
 
   private static final String DB_URL = "jdbc:h2:~/dao";
@@ -58,7 +64,7 @@ public class DbCustomerDaoTest {
    * Creates customers schema.
    * @throws SQLException if there is any error while creating schema.
    */
-  @BeforeEach
+  @Before
   public void createSchema() throws SQLException {
     try (Connection connection = DriverManager.getConnection(DB_URL);
         Statement statement = connection.createStatement()) {
@@ -69,14 +75,13 @@ public class DbCustomerDaoTest {
   /**
    * Represents the scenario where DB connectivity is present.
    */
-  @Nested
   public class ConnectionSuccess {
 
     /**
      * Setup for connection success scenario.
      * @throws Exception if any error occurs.
      */
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
       JdbcDataSource dataSource = new JdbcDataSource();
       dataSource.setURL(DB_URL);
@@ -88,7 +93,6 @@ public class DbCustomerDaoTest {
     /**
      * Represents the scenario when DAO operations are being performed on a non existing customer.
      */
-    @Nested
     public class NonExistingCustomer {
 
       @Test
@@ -137,7 +141,6 @@ public class DbCustomerDaoTest {
      * customer.
      *
      */
-    @Nested
     public class ExistingCustomer {
 
       @Test
@@ -181,18 +184,20 @@ public class DbCustomerDaoTest {
    * DB service unavailable.
    * 
    */
-  @Nested
   public class ConnectivityIssue {
     
     private static final String EXCEPTION_CAUSE = "Connection not available";
-
+    @Rule public ExpectedException exception = ExpectedException.none();
+    
     /**
      * setup a connection failure scenario.
      * @throws SQLException if any error occurs.
      */
-    @BeforeEach
+    @Before
     public void setUp() throws SQLException {
       dao = new DbCustomerDao(mockedDatasource());
+      exception.expect(Exception.class);
+      exception.expectMessage(EXCEPTION_CAUSE);
     }
     
     private DataSource mockedDatasource() throws SQLException {
@@ -205,40 +210,31 @@ public class DbCustomerDaoTest {
     }
 
     @Test
-    public void addingACustomerFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.add(new Customer(2, "Bernard", "Montgomery"));
-      });
+    public void addingACustomerFailsWithExceptionAsFeedbackToClient() throws Exception {
+      dao.add(new Customer(2, "Bernard", "Montgomery"));
     }
     
     @Test
-    public void deletingACustomerFailsWithExceptionAsFeedbackToTheClient() {
-      assertThrows(Exception.class, () -> {
-        dao.delete(existingCustomer);
-      });
+    public void deletingACustomerFailsWithExceptionAsFeedbackToTheClient() throws Exception {
+      dao.delete(existingCustomer);
     }
     
     @Test
-    public void updatingACustomerFailsWithFeedbackToTheClient() {
+    public void updatingACustomerFailsWithFeedbackToTheClient() throws Exception {
       final String newFirstname = "Bernard";
       final String newLastname = "Montgomery";
-      assertThrows(Exception.class, () -> {
-        dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname));
-      });
+      
+      dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname));
     }
     
     @Test
-    public void retrievingACustomerByIdFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.getById(existingCustomer.getId());
-      });
+    public void retrievingACustomerByIdFailsWithExceptionAsFeedbackToClient() throws Exception {
+      dao.getById(existingCustomer.getId());
     }
     
     @Test
-    public void retrievingAllCustomersFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.getAll();
-      });
+    public void retrievingAllCustomersFailsWithExceptionAsFeedbackToClient() throws Exception {
+      dao.getAll();
     }
 
   }
@@ -247,7 +243,7 @@ public class DbCustomerDaoTest {
    * Delete customer schema for fresh setup per test.
    * @throws SQLException if any error occurs.
    */
-  @AfterEach
+  @After
   public void deleteSchema() throws SQLException {
     try (Connection connection = DriverManager.getConnection(DB_URL);
         Statement statement = connection.createStatement()) {

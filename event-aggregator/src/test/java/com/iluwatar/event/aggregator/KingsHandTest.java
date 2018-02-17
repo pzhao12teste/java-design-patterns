@@ -22,7 +22,7 @@
  */
 package com.iluwatar.event.aggregator;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;

@@ -22,9 +22,9 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/13/15 - 2:57 PM

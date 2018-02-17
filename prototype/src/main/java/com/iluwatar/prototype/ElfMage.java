@@ -29,25 +29,16 @@ package com.iluwatar.prototype;
  */
 public class ElfMage extends Mage {
 
-  
-  private String helpType;
-  
-  public ElfMage(String helpType) {
-    this.helpType = helpType;
-  }
-
-  public ElfMage(ElfMage elfMage) {
-    this.helpType = elfMage.helpType;
-  }
+  public ElfMage() {}
 
   @Override
-  public ElfMage copy() throws CloneNotSupportedException {
-    return new ElfMage(this);
+  public Mage clone() throws CloneNotSupportedException {
+    return new ElfMage();
   }
 
   @Override
   public String toString() {
-    return "Elven mage helps in " + helpType;
+    return "Elven mage";
   }
 
 }

@@ -25,10 +25,11 @@ package com.iluwatar.mediator;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
@@ -37,7 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -46,9 +47,11 @@ import static org.mockito.Mockito.verify;
  *
  * @author Jeroen Meulemeester
  */
+@RunWith(Parameterized.class)
 public class PartyMemberTest {
 
-  static Collection<Supplier<PartyMember>[]> dataProvider() {
+  @Parameterized.Parameters
+  public static Collection<Supplier<PartyMember>[]> data() {
     return Arrays.asList(
             new Supplier[]{Hobbit::new},
             new Supplier[]{Hunter::new},
@@ -57,14 +60,28 @@ public class PartyMemberTest {
     );
   }
 
+  /**
+   * The factory, used to create a new instance of the tested party member
+   */
+  private final Supplier<PartyMember> memberSupplier;
+
+  /**
+   * Create a new test instance, using the given {@link PartyMember} factory
+   *
+   * @param memberSupplier The party member factory
+   */
+  public PartyMemberTest(final Supplier<PartyMember> memberSupplier) {
+    this.memberSupplier = memberSupplier;
+  }
+
   private InMemoryAppender appender;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     appender = new InMemoryAppender(PartyMemberBase.class);
   }
 
-  @AfterEach
+  @After
   public void tearDown() {
     appender.stop();
   }
@@ -72,10 +89,9 @@ public class PartyMemberTest {
   /**
    * Verify if a party action triggers the correct output to the std-Out
    */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testPartyAction(Supplier<PartyMember> memberSupplier) {
-    final PartyMember member = memberSupplier.get();
+  @Test
+  public void testPartyAction() {
+    final PartyMember member = this.memberSupplier.get();
 
     for (final Action action : Action.values()) {
       member.partyAction(action);
@@ -88,10 +104,9 @@ public class PartyMemberTest {
   /**
    * Verify if a member action triggers the expected interactions with the party class
    */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testAct(Supplier<PartyMember> memberSupplier) {
-    final PartyMember member = memberSupplier.get();
+  @Test
+  public void testAct() {
+    final PartyMember member = this.memberSupplier.get();
 
     member.act(Action.GOLD);
     assertEquals(0, appender.getLogSize());
@@ -112,10 +127,9 @@ public class PartyMemberTest {
   /**
    * Verify if {@link PartyMember#toString()} generate the expected output
    */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testToString(Supplier<PartyMember> memberSupplier) throws Exception {
-    final PartyMember member = memberSupplier.get();
+  @Test
+  public void testToString() throws Exception {
+    final PartyMember member = this.memberSupplier.get();
     final Class<? extends PartyMember> memberClass = member.getClass();
     assertEquals(memberClass.getSimpleName(), member.toString());
   }

@@ -22,8 +22,7 @@
  */
 package com.iluwatar.delegation.simple;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 /**
  * Application Test Entry
  */

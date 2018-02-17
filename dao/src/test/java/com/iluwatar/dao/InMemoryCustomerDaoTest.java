@@ -23,27 +23,31 @@
 
 package com.iluwatar.dao;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
 
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 /**
  * Tests {@link InMemoryCustomerDao}.
  */
+@RunWith(HierarchicalContextRunner.class)
 public class InMemoryCustomerDaoTest {
 
   private InMemoryCustomerDao dao;
   private static final Customer CUSTOMER = new Customer(1, "Freddy", "Krueger");
 
-  @BeforeEach
+  @Before
   public void setUp() {
     dao = new InMemoryCustomerDao();
     assertTrue(dao.add(CUSTOMER));
@@ -53,7 +57,6 @@ public class InMemoryCustomerDaoTest {
    * Represents the scenario when the DAO operations are being performed on a non existent 
    * customer.  
    */
-  @Nested
   public class NonExistingCustomer {
 
     @Test
@@ -101,7 +104,6 @@ public class InMemoryCustomerDaoTest {
    * Represents the scenario when the DAO operations are being performed on an already existing
    * customer.
    */
-  @Nested
   public class ExistingCustomer {
 
     @Test

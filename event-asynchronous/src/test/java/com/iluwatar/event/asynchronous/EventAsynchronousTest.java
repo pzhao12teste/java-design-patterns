@@ -16,13 +16,12 @@
  */
 package com.iluwatar.event.asynchronous;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -34,7 +33,7 @@ public class EventAsynchronousTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
 
-  @BeforeEach
+  @Before
   public void setUp() {
     app = new App();
   }
@@ -72,19 +71,17 @@ public class EventAsynchronousTest {
     }
   }
 
-  @Test
+  @Test(expected = InvalidOperationException.class)
   public void testUnsuccessfulSynchronousEvent() throws InvalidOperationException {
-    assertThrows(InvalidOperationException.class, () -> {
-      EventManager eventManager = new EventManager();
-      try {
-        int sEventId = eventManager.create(60);
-        eventManager.start(sEventId);
-        sEventId = eventManager.create(60);
-        eventManager.start(sEventId);
-      } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
-      }
-    });
+    EventManager eventManager = new EventManager();
+    try {
+      int sEventId = eventManager.create(60);
+      eventManager.start(sEventId);
+      sEventId = eventManager.create(60);
+      eventManager.start(sEventId);
+    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
+      LOGGER.error(e.getMessage());
+    }
   }
 
   @Test

@@ -22,7 +22,7 @@
  */
 package com.iluwatar.hexagonal;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Unit test for simple App.

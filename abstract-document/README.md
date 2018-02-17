@@ -12,6 +12,8 @@ tags:
 ## Intent
 Achieve flexibility of untyped languages and keep the type-safety 
 
+![alt text](./etc/abstract-document-base.png "Abstract Document Base")
+
 ![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 

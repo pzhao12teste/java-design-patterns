@@ -29,6 +29,7 @@ package com.iluwatar.prototype;
  */
 public abstract class Prototype implements Cloneable {
 
-  public abstract Object copy() throws CloneNotSupportedException;
+  @Override
+  public abstract Object clone() throws CloneNotSupportedException;
 
 }

@@ -3,11 +3,11 @@ layout: pattern
 title: EIP Splitter
 folder: eip-splitter
 permalink: /patterns/eip-splitter/
-categories: Integration
+categories: Enterprise integration
 tags:
  - Java
  - Difficulty-Intermittent
- - EIP
+ - Enterprise integration
 ---
 
 ## Intent

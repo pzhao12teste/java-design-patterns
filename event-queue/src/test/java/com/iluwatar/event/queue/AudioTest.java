@@ -22,15 +22,13 @@
  */
 
 package com.iluwatar.event.queue;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
-
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.junit.Test;
 
 /**
  * Testing the Audio service of the Queue
@@ -55,7 +53,7 @@ public class AudioTest {
     // test that service is finished
     assertFalse(!Audio.isServiceRunning());
   }
-
+  
   /**
    * Test here that the Queue
    * @throws UnsupportedAudioFileException when the audio file is not supported 

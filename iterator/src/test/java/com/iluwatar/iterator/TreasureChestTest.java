@@ -22,21 +22,23 @@
  */
 package com.iluwatar.iterator;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 /**
  * Date: 12/14/15 - 2:58 PM
  *
  * @author Jeroen Meulemeester
  */
+@RunWith(Parameterized.class)
 public class TreasureChestTest {
 
   /**
@@ -44,7 +46,8 @@ public class TreasureChestTest {
    *
    * @return The set of all expected items in the chest
    */
-  public static List<Object[]> dataProvider() {
+  @Parameterized.Parameters
+  public static List<Object[]> data() {
     final List<Object[]> parameters = new ArrayList<>();
     parameters.add(new Object[]{new Item(ItemType.POTION, "Potion of courage")});
     parameters.add(new Object[]{new Item(ItemType.RING, "Ring of shadows")});
@@ -60,11 +63,24 @@ public class TreasureChestTest {
   }
 
   /**
+   * One of the expected items in the chest
+   */
+  private final Item expectedItem;
+
+  /**
+   * Create a new test instance, test if the given expected item can be retrieved from the chest
+   *
+   * @param expectedItem One of the items that should be in the chest
+   */
+  public TreasureChestTest(final Item expectedItem) {
+    this.expectedItem = expectedItem;
+  }
+
+  /**
    * Test if the expected item can be retrieved from the chest using the {@link ItemIterator}
    */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testIterator(Item expectedItem) {
+  @Test
+  public void testIterator() {
     final TreasureChest chest = new TreasureChest();
     final ItemIterator iterator = chest.iterator(expectedItem.getType());
     assertNotNull(iterator);
@@ -72,16 +88,16 @@ public class TreasureChestTest {
     while (iterator.hasNext()) {
       final Item item = iterator.next();
       assertNotNull(item);
-      assertEquals(expectedItem.getType(), item.getType());
+      assertEquals(this.expectedItem.getType(), item.getType());
 
       final String name = item.toString();
       assertNotNull(name);
-      if (expectedItem.toString().equals(name)) {
+      if (this.expectedItem.toString().equals(name)) {
         return;
       }
     }
 
-    fail("Expected to find item [" + expectedItem + "] using iterator, but we didn't.");
+    fail("Expected to find item [" + this.expectedItem + "] using iterator, but we didn't.");
 
   }
 
@@ -89,9 +105,8 @@ public class TreasureChestTest {
    * Test if the expected item can be retrieved from the chest using the {@link
    * TreasureChest#getItems()} method
    */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testGetItems(Item expectedItem) throws Exception {
+  @Test
+  public void testGetItems() throws Exception {
     final TreasureChest chest = new TreasureChest();
     final List<Item> items = chest.getItems();
     assertNotNull(items);
@@ -101,14 +116,14 @@ public class TreasureChestTest {
       assertNotNull(item.getType());
       assertNotNull(item.toString());
 
-      final boolean sameType = expectedItem.getType() == item.getType();
-      final boolean sameName = expectedItem.toString().equals(item.toString());
+      final boolean sameType = this.expectedItem.getType() == item.getType();
+      final boolean sameName = this.expectedItem.toString().equals(item.toString());
       if (sameType && sameName) {
         return;
       }
     }
 
-    fail("Expected to find item [" + expectedItem + "] in the item list, but we didn't.");
+    fail("Expected to find item [" + this.expectedItem + "] in the item list, but we didn't.");
 
   }
 

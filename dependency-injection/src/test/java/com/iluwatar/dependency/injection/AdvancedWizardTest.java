@@ -23,12 +23,11 @@
 package com.iluwatar.dependency.injection;
 
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:40 PM
@@ -39,12 +38,12 @@ public class AdvancedWizardTest {
 
   private InMemoryAppender appender;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
-  @AfterEach
+  @After
   public void tearDown() {
     appender.stop();
   }
